@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Panel</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #4facfed5 0%, #00f1fea6 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            margin-bottom: 60px;
+            text-align: center;
+        }
+        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding: 40px;
+            background-color: #faf6f0; 
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            align-items: center;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        
+        .grid-item {
+            border: none;
+            padding: 0;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .grid-item a {
+            display: block;
+            padding: 20px;
+            background-color: #4facfe;
+            color: white;
+            border-radius: 8px;
+            text-decoration: none;
+        }
+
+        .grid-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+        }
+
+        .grid-item:hover a {
+            background-color: #00f2fe;
+        }
+        
+        .link {
+            display: inline-block;
+            margin: 10px;
+            text-decoration: none;
+            color: #ffffff;
+            padding: 10px 20px;
+            background-color: #4facfe;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            font-weight: normal;
+        }
+        
+        .link:hover {
+            background-color: #00f2fe;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        {% if request.user.is_authenticated %}
+        <a class="link" href="{% url 'logout' %}">Log out</a>
+        {% endif %}
+
+        <a class="link" href="{% url 'new_data' %}">Add data</a>
+        <a class="link" href="{% url 'choose_Dane' %}">Go into data</a>
+        <a class="link" href="{% url 'home' %}">Back to main page</a>
+        
+        <div class="grid-container">
+            <h2 style="grid-column: span 2; text-align: center; margin-bottom: 20px; color: #333333;">Add a new data</h2>
+            <div class="grid-item"><a href='{% url "create_employee" %}'>Employee</a></div>
+            <div class="grid-item"><a href='{% url "create_project" %}'>Project</a></div>
+            <div class="grid-item"><a href='{% url "create_laboratory" %}'>Laboratory</a></div>
+            <div class="grid-item"><a href='{% url "create_experiment" %}'>Experiment</a></div>
+            <div class="grid-item"><a href='{% url "create_method" %}'>Method</a></div>
+            <div class="grid-item"><a href='{% url "create_keyword" %}'>Keyword</a></div>
+            <div class="grid-item"><a href='{% url "create_patient" %}'>Patient</a></div>
+            <div class="grid-item"><a href='{% url "create_diagnosis" %}'>Diagnosis</a></div>
+        </div>
+    </div>
+</body>
+</html>
